@@ -6,6 +6,7 @@
 ```sh
 python3 --version
 ```
+
 ## Подготовка к работе
 * Открыть терминал: **Ctrl + Alt + T**
 * Написать следующие команды:
@@ -13,6 +14,7 @@ python3 --version
 cd~
 git clone https://github.com/Promobot-education/Robox.git
 cd ./Robox
+chmod +x ./install.sh
 ```
 * Установить требуемые зависимости и компоненты:
 ```bash

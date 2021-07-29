@@ -15,7 +15,7 @@ cd .\Rooky\python
 ```
 * Запустить скрипт установки библиотек командой:
 ```bash
-python.exe setup.py .\setup.py
+python.exe setup.py install
 ```
 * Установить [драйвера](/Rooky/res/drivers/CDM21228_Setup.exe) для интерфейсной платы
 * **Настройка закончена**
@@ -28,3 +28,50 @@ python.exe setup.py .\setup.py
   
   ``arm = Rooky.Rooky('COM2','left')``
 * Запустить модуль (**F5**)
+
+## Запуск примеров на языке С++ (на примере компилятора MinGW)
+1. Установить компилятор С++
+   при использовании MinGW необходимо:
+   - установить [mingw-get-setup](https://sourceforge.net/projects/mingw/files/latest/download)
+   - после установки автоматически запустится MinGW Installation Manager (ярлык MinGW Installer на рабочем столе)
+   - отметить **mingw-developer-toolkit, msys-base, mingw32-base, g++** для установки
+   - нажать **Installation -> Apply changes -> Apply**
+   - нажать **Win + R**
+   - и ввести **SystemPropertiesAdvanced.exe**
+   - нажать **"Переменные среды"**
+   - выбрать Path и нажать **"Изменить"**
+   - нажать "Обзор" и указать путь до папки **bin** куда установлен MinGW (например C:\MinGW\bin)
+   - также еще указать путь до папки **msys\1.0\bin** (например C:\MinGW\msys\1.0\bin)
+   - везде нажать "OK"
+   - проверить что всё работает:
+     - нажать **Win + X**
+     - запустить **PowerShell** (без прав администратора)
+     - ввести команду: ``g++ --version`` 
+     - должна отобразиться версия компилятора g++
+2. Скачать библиотеку [libmodbus](https://github.com/stephane/libmodbus/archive/refs/tags/v3.1.6.zip)
+3. Распаковать библиотеку на диск ``С:\``
+4. Зайти в папку **C:\libmodbus-3.1.6**
+5. Нажать **Shift + правая кнопка мыши**
+6. Выбрать **Открыть окно PowerShell здесь**
+7. Подать следующие команды:
+   ```PowerShell
+   sh
+   ./autogen.sh
+   ./configure --prefix=/usr/local/
+   cd src
+   make install
+   ```
+   * закрыть PowerShell
+8. Открыть файл с примером, например файл **Rooky\cpp\examples\read_servos.cpp**
+9. Заменить в открытом файле ``initRooky("/dev/RS_485", side, false)`` на COM порт подключенной платы, например ``initRooky("/dev/RS_485", side, false)``, **сохранить**
+10. Вернуться в папку с библиотекой для языка **С++** (Путь: Rooky\cpp)
+11. Нажать **Shift + правая кнопка мыши**
+12. Выбрать **Открыть окно PowerShell здесь**
+13. Скомпилировать исходный код примеров, подав команды
+    ```PowerShell
+    sh
+    make
+    ```
+14. Скопировать файл "libmodbus-5.dll" из **C:\MinGW\msys\1.0\local\bin** в папку **Rooky\cpp\build**
+15. Запустить **read_servos.exe** в папке **Rooky\cpp\build**
+16. **Гордиться собой!!!**

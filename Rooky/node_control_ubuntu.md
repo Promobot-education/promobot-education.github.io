@@ -56,6 +56,9 @@
     ```sh
     roslaunch promobot_control promobot_hardware.launch side:=right
     ```
+  * Запустить узел, инструкция ниже
+
+### Запуск узла ROS на языке Python
 * Открыть еще один терминал: **Ctrl + Alt + T**
 * Подать команду для перехода в директорию с примером:
   ```sh
@@ -63,7 +66,30 @@
   ```
 * Запустить пример:
   ```
-  python joints.py
+  python move_joints.py
+  ```
+
+### Запуск узла ROS на языке C++
+* Открыть еще один терминал: **Ctrl + Alt + T**
+* Подать команду для перехода в директорию с workspace:
+  ```sh
+  cd ~/Rooky/ros/cpp_examples_ws
+  ```
+* Скомпилировать:
+  ```sh
+  catkin_make install
+  ```
+* Перейти в дирректорию install:
+  ```sh
+  cd install
+  ```
+* Выполнить:
+  ```sh
+  source setup.bash
+  ```
+* Запусить:
+  ```sh
+  rosrun examples move_joints
   ```
 
 ## Запуск для работы в режиме симуляции, без реального устройства
