@@ -2,7 +2,7 @@
 ## Подготовка
 
 1. Выполнить [подготовку Windows](/WSL2/preparing_windows)
-2. Потребуется скачать ROS Kinetic ~2Gb:
+2. Установить в WSL ROS ~2Gb следущими командами:
    * Нажать **Win + X**
    * Выбрать окно **PowerShell (админ)**
    * Подать следующие команды:
@@ -19,27 +19,27 @@
      echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
      source ~/.bashrc
      ```
-   * Установить пакет с серверным ПО **promobot-edu-control**
-     * Добавить в систему ppa репозиторий (если не добавлен)
-       ```sh
-       curl -s --compressed "https://Promobot-education.github.io/ppa/KEY.gpg" | sudo apt-key add -
-       sudo curl -s -o /etc/apt/sources.list.d/promobot-education.list "https://Promobot-education.github.io/ppa/promobot-education.list"
-       ```
-     * Установить пакет:
-       ```sh
-       sudo apt update
-       sudo apt install promobot-edu-control
-       ```
-     * Добавить путь до файлов серверного ПО
-       ```sh
-       echo "source /opt/promobot/EduControl/install/setup.bash" >> ~/.bashrc
-       source ~/.bashrc
-       ```
-     * Проверить зависимости
-       ```sh
-       cd /opt/promobot/EduControl
-       rosdep install --from-paths install --ignore-src -r -y
-       ```
+3. Установить в WSL пакет с серверным ПО **promobot-edu-control** (в том же окне wsl):
+   * Добавить в систему ppa репозиторий (если не добавлен)
+     ```sh
+     curl -s --compressed "https://Promobot-education.github.io/ppa/KEY.gpg" | sudo apt-key add -
+     sudo curl -s -o /etc/apt/sources.list.d/promobot-education.list "https://Promobot-education.github.io/ppa/promobot-education.list"
+     ```
+   * Установить пакет:
+     ```sh
+     sudo apt update
+     sudo apt install promobot-edu-control
+     ```
+   * Добавить путь до файлов серверного ПО
+     ```sh
+     echo "source /opt/promobot/EduControl/install/setup.bash" >> ~/.bashrc
+     source ~/.bashrc
+     ```
+   * Проверить зависимости
+     ```sh
+     cd /opt/promobot/EduControl
+     rosdep install --from-paths install --ignore-src -r -y
+     ```
 
 ## Запуск для работы с реальным устройством
   

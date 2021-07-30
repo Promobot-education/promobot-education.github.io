@@ -1,25 +1,7 @@
-# Управление Rooky через узел ROS на Ubuntu 16.04
+# Управление Rooky через узел ROS на Windows
 ## Подготовка 
-1. Установить [git](https://git-scm.com/download/win)
-2. Установить [Python 3.5.4](https://www.python.org/ftp/python/3.5.4/python-3.5.4-amd64.exe) (При установке поставить галочку **"Add Python 3.5 to PATH"**)
-3. **Создать и перейти** в папку где будут храниться клонированные репозитории (например: C:\git)
-4. Нажать **Shift + правая кнопка мыши**
-5. Выбрать **Открыть окно PowerShell здесь**
-6. Клонировать репозиторий Rooky командой:
-   ```PowerShell
-   git clone https://github.com/Promobot-education/Rooky.git
-   ```
-7. Перейти в папку с установочным скриптом командой:
-   ```PowerShell
-   cd .\Rooky\python
-   ```
-8. Запустить скрипт установки библиотек командой:
-   ```PowerShell
-   python.exe setup.py .\setup.py
-   ```
-9. Установить [драйвера](/Rooky/res/drivers/CDM21228_Setup.exe) для интерфейсной платы
-10. Выполнить [подготовку Windows](/WSL2/preparing_windows)
-11. Скачать ROS Kinetic ~2Gb:
+1. Выполнить [подготовку Windows](/WSL2/preparing_windows)
+2. Установить в WSL ROS ~2Gb следущими командами:
    * Нажать **Win + X**
    * Выбрать окно **PowerShell (админ)**
    * Подать следующие команды:
@@ -36,30 +18,40 @@
      echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
      source ~/.bashrc
      ```
-   * Установить пакет с серверным ПО **promobot-edu-control**
-     * Добавить в систему ppa репозиторий (если не добавлен)
-       ```sh
-       curl -s --compressed "https://Promobot-education.github.io/ppa/KEY.gpg" | sudo apt-key add -
-       sudo curl -s -o /etc/apt/sources.list.d/promobot-education.list "https://Promobot-education.github.io/ppa/promobot-education.list"
-       ```
-     * Установить пакет:
-       ```sh
-       sudo apt update
-       sudo apt install promobot-edu-control
-       ```
-     * Добавить путь до файлов серверного ПО
-       ```sh
-       echo "source /opt/promobot/EduControl/install/setup.bash" >> ~/.bashrc
-       source ~/.bashrc
-       ```
-     * Проверить зависимости
-       ```sh
-       cd /opt/promobot/EduControl
-       rosdep install --from-paths install --ignore-src -r -y
-       ```
-12. **Настройка закончена**
+3. Установить в WSL пакет с серверным ПО **promobot-edu-control** (в том же окне wsl):
+   * Добавить в систему ppa репозиторий (если не добавлен)
+     ```sh
+     curl -s --compressed "https://Promobot-education.github.io/ppa/KEY.gpg" | sudo apt-key add -
+     sudo curl -s -o /etc/apt/sources.list.d/promobot-education.list "https://Promobot-education.github.io/ppa/promobot-education.list"
+     ```
+   * Установить пакет:
+     ```sh
+     sudo apt update
+     sudo apt install promobot-edu-control
+     ```
+   * Добавить путь до файлов серверного ПО
+     ```sh
+     echo "source /opt/promobot/EduControl/install/setup.bash" >> ~/.bashrc
+     source ~/.bashrc
+     ```
+   * Проверить зависимости
+     ```sh
+     cd /opt/promobot/EduControl
+     rosdep install --from-paths install --ignore-src -r -y
+     ```
+4. Установить в WSL библиотеки и примеры для работы с Rooky (в том же окне wsl):
+   ```sh
+   cd ~
+   git clone https://github.com/Promobot-education/Rooky.git
+   cd Rooky
+   chmod +x ./install.sh
+   ./install.sh
+   ```
+5.  **Настройка закончена**
 
-## Запуск для работы с реальным устройством
+# Запуск
+
+## 1. Запуск серверного ПО для работы с реальным устройством
 
 <details style="margin: 10px 0px 10px 10px;">
 	<summary style="color:#069;">Правильный запуск WSL</summary>
@@ -120,17 +112,65 @@
    ```sh
    roslaunch promobot_control promobot_hardware.launch side:=right
    ```
-* Запустить еще одно новое окно PowerShell:
-   * нажать **Win + X**
-   * выбрать **PowerShell (админ)**
-* Запустить Linux командой:
-   ```PowerShell
-   wsl
-   ```
-* Запустить пример узла ROS командой в PowerShell:
-   ```PowerShell
-   python /mnt/c/git/Rooky/ros/joints.py
-   ```
+
+## 2. Запуск примера узла
+#### Запуск узла ROS на языке Python
+* Запустить окно WSL:
+  * нажать **Win + X**
+  * выбрать **PowerShell (админ)**
+  * ввести команду: **wsl**
+* Отредактировать файл **move_joints.py** в соответствии с типом Rooky:
+  * ```sh
+    nano ~/Rooky/ros/move_joints.py
+    ```
+  * ```py
+    node = ControlJoints("left") # ControlJoints может принимать "left" или "right"
+    ```
+  * сохранить
+    * **CTRL + X**
+    * нажать **Y**
+    * подтвердить название файла
+* Подать команду для перехода в директорию с примером:
+  ```sh
+  cd ~/Rooky/ros/
+  ```
+* Запустить пример:
+  ```
+  python move_joints.py
+  ```
+
+#### Запуск узла ROS на языке C++
+* Запустить окно WSL:
+  * нажать **Win + X**
+  * выбрать **PowerShell (админ)**
+  * ввести команду: **wsl**
+* Отредактировать файл **move_joints.cpp** в соответствии с типом Rooky:
+  * ```sh
+    nano ~/Rooky/ros/cpp_examples_ws/src/examples/src/move_joints.cpp
+    ```
+  * ```cpp
+    RookySide rooky_side = LEFT; // rooky_side может принимать 2 значения: LEFT или RIGHT
+    ```
+  * сохранить
+    * **CTRL + X**
+    * нажать **Y**
+    * подтвердить название файла
+* Подать команду для перехода в директорию с workspace:
+  ```sh
+  cd ~/Rooky/ros/cpp_examples_ws
+  ```
+* Скомпилировать:
+  ```sh
+  catkin_make install
+  ```
+* Чтобы ROS знал где скомпилированный пакет "examples" - выполнить:
+  ```sh
+  source ~/Rooky/ros/cpp_examples_ws/install/setup.bash
+  ```
+* Запусить узел:
+  ```sh
+  rosrun examples move_joints
+  ```
 
 ## Запуск для работы в режиме симуляции, без реального устройства
 Запуск симуляции происходит аналогично запуску с реальным устройством.  
