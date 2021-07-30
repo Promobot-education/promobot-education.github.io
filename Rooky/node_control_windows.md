@@ -53,65 +53,69 @@
 
 ## 1. Запуск серверного ПО для работы с реальным устройством
 
-<details style="margin: 10px 0px 10px 10px;">
-	<summary style="color:#069;">Правильный запуск WSL</summary>
-	<div style="margin-top: 20px;">
-    <p>ℹ️ Если не настраивали текущий COM порт - <a href="/WSL2/com_setup">настроить</a></p>
-    <p>ℹ️ Для корректной работы с реальным устройством, подключенным по USB необходимо всегда запускать две утилиты:</p>
-    <ol>
-      <li>На стороне <strong>Windows</strong> запустить сервер:
-        <ul>
-          <li>нажать <strong>Win + X</strong></li>
-          <li>выбрать <strong>PowerShell (админ)</strong></li>
-          <li>подать команду:
-            <pre><code class="language-PowerShell">python.exe 'C:\Program Files (x86)\Promobot\WSL2-main\utils\Server.py'</code></pre>
-            <blockquote>
-              <p>Если происходит ошибка на этапе import serial, необходимо подать команду в PowerShell:</p>
-              <pre><code class="language-PowerShell">pip install pyserial</code></pre>
-            </blockquote>
-          </li>
-          <li>свернуть окно PowerShell</li>
-        </ul>
-      </li>
-      <li>На стороне <strong>Linux</strong> запустить клиент (в <strong>новом</strong> окне PowerShell)
-        <ul>
-          <li>запустить WSL командой:
-            <pre><code class="language-PowerShell">wsl</code></pre>
-          </li>
-          <li>подать команду:
-            <div class="language-sh highlighter-rouge">
-              <div class="highlight">
-                <pre class="highlight"><code><span class="nb">sudo </span>socat <span class="nt">-d</span> <span class="nt">-d</span> pty,link<span class="o">=</span>/dev/RS_485,raw,echo<span class="o">=</span>0,perm<span class="o">=</span>0666 tcp:<span class="nv">$HOST_ADDR</span>:5000</code></pre>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <li>Оба запущенных PowerShell можно <strong>свернуть</strong>, чтобы не мешались.</li>
-    </ol>
-    <p>ℹ️ Не стоит забывать про <a href="/WSL2/preparing_windows#запуск-x-сервера">X-сервер</a>, он всегда должен быть запущен.</p>
-    <p><img src="/WSL2/res/tray.png" alt="tray"></p>
-  </div>
-</details>
+    1. Подключить интерфейсную плату к ПК
 
-***
-**Далее:**
+<div class="highlight">
+  <details style="margin: 10px 0px 20px 0px; padding: 0px 0px 0px 10px; border: 1px solid #e5e5e5; border-radius: 5px;">
+    <summary style="color:#069;">2.  Правильный запуск WSL</summary>
+    <div style="margin-top: 20px;">
+      <p>ℹ️ Если не настраивали текущий COM порт - <a href="/WSL2/com_setup">настроить</a></p>
+      <p>ℹ️ Для корректной работы с реальным устройством, подключенным по USB необходимо всегда запускать две утилиты:</p>
+      <ol>
+        <li>На стороне <strong>Windows</strong> запустить сервер:
+          <ul>
+            <li>нажать <strong>Win + X</strong></li>
+            <li>выбрать <strong>PowerShell (админ)</strong></li>
+            <li>подать команду:
+              <pre><code class="language-PowerShell">python.exe 'C:\Program Files (x86)\Promobot\WSL2-main\utils\Server.py'</code></pre>
+              <blockquote>
+                <p>Если происходит ошибка на этапе import serial, необходимо подать команду в PowerShell:</p>
+                <pre><code class="language-PowerShell">pip install pyserial</code></pre>
+              </blockquote>
+            </li>
+            <li>свернуть окно PowerShell</li>
+          </ul>
+        </li>
+        <li>На стороне <strong>Linux</strong> запустить клиент (в <strong>новом</strong> окне PowerShell)
+          <ul>
+            <li>запустить WSL командой:
+              <pre><code class="language-PowerShell">wsl</code></pre>
+            </li>
+            <li>подать команду:
+              <div class="language-sh highlighter-rouge">
+                <div class="highlight">
+                  <pre class="highlight"><code><span class="nb">sudo </span>socat <span class="nt">-d</span> <span class="nt">-d</span> pty,link<span class="o">=</span>/dev/RS_485,raw,echo<span class="o">=</span>0,perm<span class="o">=</span>0666 tcp:<span class="nv">$HOST_ADDR</span>:5000</code></pre>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>Оба запущенных PowerShell можно <strong>свернуть</strong>, чтобы не мешались.</li>
+      </ol>
+      <p>ℹ️ Не стоит забывать про <a href="/WSL2/preparing_windows#запуск-x-сервера">X-сервер</a>, он всегда должен быть запущен при работе с GUI.</p>
+      <p><img src="/WSL2/res/tray.png" alt="tray"></p>
+    </div>
+  </details>
+</div>
+
+    3. Запустить серверное ПО:
+
 * Запустить **новое** окно PowerShell:
   * нажать **Win + X**
   * выбрать **PowerShell (админ)**
 * Запустить Linux командой:
-   ```PowerShell
-   wsl
-   ```
+  ```PowerShell
+  wsl
+  ```
 * В зависимости от типа Rooky запустить ROS командой:
   * **Для левой Rooky:**
-   ```sh
-   roslaunch promobot_control promobot_hardware.launch side:=left
-   ```
+  ```sh
+  roslaunch promobot_control promobot_hardware.launch side:=left
+  ```
   * **Для правой Rooky:**
-   ```sh
-   roslaunch promobot_control promobot_hardware.launch side:=right
-   ```
+  ```sh
+  roslaunch promobot_control promobot_hardware.launch side:=right
+  ```
 
 ## 2. Запуск примера узла
 #### Запуск узла ROS на языке Python
@@ -174,7 +178,8 @@
 
 ## Запуск для работы в режиме симуляции, без реального устройства
 Запуск симуляции происходит аналогично запуску с реальным устройством.  
-Отличаются только команды на запуск серверного ПО (ROS):  
+За исключением отсутствия необходимости выполнять **Правильный запуск WSL** потому, что отсутствует реальное устройство, а вместе с ним и последовательный порт, который стоит "прокидывать" в wsl.  
+А также отличается команда на запуск серверного ПО (ROS):  
 * **Для левой Rooky:**
   ```sh
   roslaunch promobot_control start_simulation.launch side:=left
@@ -183,3 +188,5 @@
   ```sh
   roslaunch promobot_control start_simulation.launch side:=right
   ```
+<p>ℹ️ Не стоит забывать про <a href="/WSL2/preparing_windows#запуск-x-сервера">X-сервер</a>, он всегда должен быть запущен при работе с GUI. Например, при симуляции он необходим программе Gazebo.</p>
+<p><img src="/WSL2/res/tray.png" alt="tray"></p>
