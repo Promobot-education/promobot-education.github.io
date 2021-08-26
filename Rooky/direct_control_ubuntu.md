@@ -33,7 +33,12 @@ python3 --version
 * Запустить пример:
   ```
   python arm_test.py
+  ```  
+  или  
   ```
+  python3 arm_test_2.py
+  ``` 
+
 
 ## Запуск примеров на языке С++
 * Открыть терминал: **Ctrl + Alt + T**
