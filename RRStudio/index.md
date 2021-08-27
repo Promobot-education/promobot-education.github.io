@@ -27,3 +27,5 @@
   ℹ️ [Установка и запуск RRStudio на Ubuntu 16.04](/RRStudio/setup_ubuntu)
 
   ℹ️ [Установка и запуск RRStudio на Windows](/RRStudio/setup_windows)
+
+  ℹ️ [Руководство пользователя](/RRStudio/user_guide)
