@@ -32,7 +32,7 @@ python3 --version
   ```
 * Запустить пример:
   ```
-  python arm_test.py
+  python3 arm_test.py
   ```  
   или  
   ```
