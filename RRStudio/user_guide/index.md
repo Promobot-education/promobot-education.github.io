@@ -274,4 +274,6 @@ Blockly - сторонняя технология. Для обучения по�
 
 ### Не подключается
 
-![](/RRStudio/user_guide/faq_robox_connection.png)
+<a href="/RRStudio/user_guide/faq_robox_connection.jpg"><img src="/RRStudio/user_guide/faq_robox_connection.jpg" height=""></a>
+
+
