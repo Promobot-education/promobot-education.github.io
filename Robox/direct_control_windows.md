@@ -16,7 +16,8 @@ cd .\Robox\python
 * Запустить скрипт установки библиотек командой
 ```PowerShell
 python.exe setup.py install
-```
+```  
+>Если пишет ошибку при работе с serial - подать команду 'pip install pyserial'  
 * Установить драйвера для интерфейсной платы, [скачать](/Robox/res/drivers/CDM21228_Setup.exe)
 * **Подготовка закончена**
 
