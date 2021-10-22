@@ -8,10 +8,10 @@
 ℹ️ [Rooky](/Rooky/libs/python/Rooky) - высокий уровень абстракции - работа с суставами.  
 > Запуск примеров производить через python версии не ниже 3.5 (например командой python3 arm_test.py)
 
-ℹ️ [Rooky2](/Rooky/libs/python/Rooky2) - Вторая версия библиотеки, совместимая с Python интерпретатором в RRStudio.  
+ℹ️ [Rooky2](/Rooky/libs/python/Rooky2) - вторая версия библиотеки, совместимая с Python интерпретатором в RRStudio.  
 > Запуск примеров производить через python версии не ниже 3.5 (например командой python3 arm_test_2.py)
 
-ℹ️ [Servo_ppm](/Rooky/libs/python/Servo_ppm) - Библиотека для работы с ppm платой (сервоприводы кисти и пальцев, датчик касания).
+ℹ️ [Servo_ppm](/Rooky/libs/python/Servo_ppm) - библиотека для работы с ppm платой (сервоприводы кисти и пальцев, датчик касания).
 
 #### Примеры прямого управления
 * [arm_test](/Rooky/examples/python/arm_test) - Движение суставами на указанный угол.

@@ -14,7 +14,10 @@
 int main()
 {
 	// Инициализация Rooky.
-	// По умолчанию для ubuntu - /dev/RS_485
+	// По умолчанию порт выбран для ubuntu - "/dev/RS_485"
+	// Для Windows порт имеет формат "COM#", например "COM3"
+	// можно выбрать RookySide::LEFT или RookySide::RIGHT
+	// false - вывод отладочной информации выключен
 	if (!initRooky("/dev/RS_485", RookySide::LEFT, false))
 		return -1;
 
@@ -47,7 +50,8 @@ int main()
 		{ "joint_7", 20, 70 },
 		{ "joint_7", 20, 0 },
 		{ "joint_7", 20, 70 },
-		{ "joint_7", 20, 0 } };
+		{ "joint_7", 20, 0 }
+	};
 
 	// Выполним каждое действие с паузой в 1с между ними
 	for (auto action : actionSequence)

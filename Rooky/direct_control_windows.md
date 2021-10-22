@@ -63,7 +63,8 @@ python.exe setup.py install
    ```
    * закрыть PowerShell
 8. Открыть файл с примером, например файл **Rooky\cpp\examples\read_servos.cpp**
-9. Заменить в открытом файле ``initRooky("/dev/RS_485", side, false)`` на COM порт подключенной платы, например ``initRooky("/dev/RS_485", side, false)``, **сохранить**
+9. В файле заменить имя COM порта ``"/dev/RS_485"`` в строке ``initRooky("/dev/RS_485", side, false)``  
+   на COM порт подключенной интерфейсной платы, например ``initRooky("COM3", side, false)``, **сохранить**
 10. Вернуться в папку с библиотекой для языка **С++** (Путь: Rooky\cpp)
 11. Нажать **Shift + правая кнопка мыши**
 12. Выбрать **Открыть окно PowerShell здесь**

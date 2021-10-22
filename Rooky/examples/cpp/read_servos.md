@@ -20,11 +20,15 @@ const std::vector<int> RIGHT_ARM_SERVOS = { 21, 22, 23, 24, 25, 26 };
 
 int main()
 {
-
+	// Выбор типа Rooky: можно выбрать
+	// RookySide::LEFT или RookySide::RIGHT
 	RookySide side = RookySide::LEFT;
 
 	// Инициализация Rooky.
-	// По умолчанию для ubuntu - /dev/RS_485
+	// По умолчанию порт выбран для ubuntu - "/dev/RS_485"
+	// Для Windows порт имеет формат "COM#", например "COM3"
+	// side - тип Rooky
+	// false - вывод отладочной информации выключен
 	if (!initRooky("/dev/RS_485", side, false))
 		return -1;
 
