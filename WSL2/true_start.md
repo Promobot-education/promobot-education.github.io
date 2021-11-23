@@ -14,7 +14,7 @@
     ```
     > Если происходит ошибка на этапе import serial, необходимо подать команду в PowerShell:
     ```PowerShell
-    pip install pyserial
+    python.exe -m pip install pyserial
     ```
   * свернуть окно PowerShell
 2. На стороне **Linux** запустить клиент (в **новом** окне PowerShell)
