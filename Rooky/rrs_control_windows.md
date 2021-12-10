@@ -49,7 +49,7 @@
   <details open style="margin: 10px 0px 20px 0px; padding: 0px 0px 0px 10px; border: 1px solid #e5e5e5; border-radius: 5px;">
     <summary style="color:#069;">2.  Корректно запустить WSL</summary>
     <div style="margin-top: 20px;">
-      <p>ℹ️ Если не настраивали текущий COM порт - <a href="/WSL2/com_setup">настроить</a></p>
+      <p>ℹ️ Обязательно настроить COM порт! <a href="/WSL2/com_setup">Инструкция.</a></p>
       <p>ℹ️ Для корректной работы с реальным устройством, подключенным по USB необходимо всегда запускать две утилиты:</p>
       <ol>
         <li>На стороне <strong>Windows</strong> запустить сервер:
