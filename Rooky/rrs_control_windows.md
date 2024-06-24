@@ -60,7 +60,7 @@
               <pre><code class="language-PowerShell">python.exe 'C:\Program Files (x86)\Promobot\WSL2-main\utils\Server.py'</code></pre>
               <blockquote>
                 <p>Если происходит ошибка на этапе import serial, необходимо подать команду в PowerShell:</p>
-                <pre><code class="language-PowerShell">pip install pyserial</code></pre>
+                <pre><code class="language-PowerShell">pip install pyserial --trusted-host pypi.python.org</code></pre>
               </blockquote>
             </li>
             <li>свернуть окно PowerShell</li>
